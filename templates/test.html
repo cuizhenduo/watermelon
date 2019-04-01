@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+<meta charset="UTF-8">
+<!-- 引入 ECharts 文件 -->
+{% load staticfiles %}
+<script src="{% static 'js/echarts.min.js' %}"></script>
+<title>Title</title>
+</head>
+<body style="height: 100%; margin: 0">
+
+<h1 id="tit" align="center"></h1>
+
+<div id="container" style="height: 90%;" >
+
+</div>
+<button onclick="init('/datetime/','光照')" style="position: absolute;top: 1%;left: 1%">光照</button>
+<button onclick="init('/airtemtime/','空气温度')" style="position: absolute;top: 1%;left: 5%">空气温度</button>
+<button onclick="init('/airhumtime/','空气湿度')" style="position: absolute;top: 1%;left: 10%">空气湿度</button>
+<button onclick="init('/soilmoitime/','土壤水分')" style="position: absolute;top: 1%;left: 15%">土壤水分</button>
+<button onclick="init('/soiltemtime/','土壤温度')" style="position: absolute;top: 1%;left: 20%">土壤温度</button>
+
+<div style="position: absolute;top: 1%;right: 15%">
+<select id="seyear">
+    <option value="2014">2014年</option>
+</select>
+    <select id="semonth">
+    <option value="1">1月</option>
+    <option value="2">2月</option>
+    <option value="3">3月</option>
+    <option value="4">4月</option>
+    <option value="5">5月</option>
+    <option value="6">6月</option>
+    <option value="7">7月</option>
+    <option value="8">8月</option>
+    <option value="9">9月</option>
+    <option value="10">10月</option>
+    <option value="11">11月</option>
+    <option value="12">12月</option>
+</select>
+</div>
+<button onclick="demonth()" style="position: absolute;top: 1%;right: 10%">确定</button>
+
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js">
+</script>
+<script type="text/javascript">
+
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+var k = null;
+function init(surl,kind) {
+    document.getElementById("tit").innerHTML=kind;
+    k = kind;
+    $.ajax({
+    type: "GET",
+    url: surl,
+    dataType:'json',
+    success: function(data){
+        var dateList = data.datelight.map(function (item) {
+            return item[0];
+        });
+        var valueList = data.datelight.map(function (item) {
+            return item[1];
+        });
+        myChart.setOption({
+            // Make gradient line here
+            visualMap: [{
+                show: false,
+                type: 'continuous',
+                seriesIndex: 0,
+                min: 0,
+                max: 400
+            }],
+            tooltip: {
+                trigger: 'axis'
+            },
+            xAxis: [{
+                data: dateList
+            }],
+            yAxis: [{
+                splitLine: {show: false}
+            }],
+            legend: {
+                data:[kind]
+            },
+            grid: [{
+                bottom: '10%'
+            }],
+            dataZoom: [
+                {   // 这个dataZoom组件，默认控制x轴。
+                    type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+                    start: 10,      // 左边在 10% 的位置。
+                    end: 60         // 右边在 60% 的位置。
+                }
+            ],
+            series: [{
+                name:kind,
+                type: 'line',
+                showSymbol: false,
+                data: valueList
+            }]
+            });
+    }
+});
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+}
+function demonth() {
+    var y = document.getElementById("seyear").value;
+    var m = document.getElementById("semonth").value;
+    $.ajax({
+             type: "POST",
+             url: "http://127.0.0.1:8000/montime/",
+             data: {year:y, month:m,kind:k},
+             dataType: "json",
+             success: function(data){
+                 var dateList = data.datelight.map(function (item) {
+                     return item[0];
+                 });
+            var valueList = data.datelight.map(function (item) {
+                return item[1];
+            });
+            myChart.setOption({
+                // Make gradient line here
+                visualMap: [{
+                    show: false,
+                    type: 'continuous',
+                    seriesIndex: 0,
+                    min: 0,
+                    max: 400
+                }],
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: [{
+                    data: dateList
+                }],
+                yAxis: [{
+                    splitLine: {show: false}
+                }],
+                legend: {
+                    data:[k]
+                },
+                grid: [{
+                    bottom: '10%'
+                }],
+                dataZoom: [
+                    {   // 这个dataZoom组件，默认控制x轴。
+                        type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+                        start: 10,      // 左边在 10% 的位置。
+                        end: 60         // 右边在 60% 的位置。
+                    }
+                ],
+                series: [{
+                    name:k,
+                    type: 'line',
+                    showSymbol: false,
+                    data: valueList
+                }]
+                });
+                 }
+    });
+}
+
+
+</script>
+</body>
+</html>

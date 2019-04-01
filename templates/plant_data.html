@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+
+</head>
+<body>
+<h3>系统当前设置</h3>
+<a href="/reset/" class="button button-3d button-primary button-rounded" style="position: absolute;top: 1%;right: 3%;">更改系统设置</a>
+<table border="1">
+    <tr>
+        <td>西瓜季节</td>
+        <td colspan="2" align="center">缓苗期</td>
+        <td colspan="2" align="center">伸蔓期</td>
+        <td colspan="2" align="center">坐果期</td>
+        <td colspan="2" align="center">澎瓜期</td>
+        <td colspan="2" align="center">成熟期</td>
+    </tr>
+    <tr>
+        <td>{{ res.Season }}</td>
+        <td>{{ res.HuanmiaoTimeS }}</td>
+        <td>{{ res.HuanmiaoTimeE }}</td>
+        <td>{{ res.ShenmanTimeS }}</td>
+        <td>{{ res.ShenmanTimeE }}</td>
+        <td>{{ res.ZuoguoTimeS }}</td>
+        <td>{{ res.ZuoguoTimeE }}</td>
+        <td>{{ res.PengguaTimeS }}</td>
+        <td>{{ res.PengguaTimeE }}</td>
+        <td>{{ res.ChengshuTimeS }}</td>
+        <td>{{ res.ChengshuTimeE }}</td>
+    </tr>
+    <tr>
+        <td>{{ light.DataKind }}</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+    </tr>
+    <tr>
+        <td>单位lux</td>
+        <td>{{ light.HuanmiaoTimeH }}</td>
+        <td>{{ light.HuanmiaoTimeL }}</td>
+        <td>{{ light.ShenmanTimeH }}</td>
+        <td>{{ light.ShenmanTimeL }}</td>
+        <td>{{ light.ZuoguoTimeH }}</td>
+        <td>{{ light.ZuoguoTimeL }}</td>
+        <td>{{ light.PengguaTimeH }}</td>
+        <td>{{ light.PengguaTimeL }}</td>
+        <td>{{ light.ChengshuTimeH }}</td>
+        <td>{{ light.ChengshuTimeL }}</td>
+    </tr>
+    <tr>
+        <td>{{ airtem.DataKind }}</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+    </tr>
+    <tr>
+        <td>单位℃</td>
+        <td>{{ airtem.HuanmiaoTimeH }}</td>
+        <td>{{ airtem.HuanmiaoTimeL }}</td>
+        <td>{{ airtem.ShenmanTimeH }}</td>
+        <td>{{ airtem.ShenmanTimeL }}</td>
+        <td>{{ airtem.ZuoguoTimeH }}</td>
+        <td>{{ airtem.ZuoguoTimeL }}</td>
+        <td>{{ airtem.PengguaTimeH }}</td>
+        <td>{{ airtem.PengguaTimeL }}</td>
+        <td>{{ airtem.ChengshuTimeH }}</td>
+        <td>{{ airtem.ChengshuTimeL }}</td>
+    </tr>
+    <tr>
+        <td>{{ airhum.DataKind }}</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+    </tr>
+    <tr>
+        <td>单位%</td>
+        <td>{{ airhum.HuanmiaoTimeH }}</td>
+        <td>{{ airhum.HuanmiaoTimeL }}</td>
+        <td>{{ airhum.ShenmanTimeH }}</td>
+        <td>{{ airhum.ShenmanTimeL }}</td>
+        <td>{{ airhum.ZuoguoTimeH }}</td>
+        <td>{{ airhum.ZuoguoTimeL }}</td>
+        <td>{{ airhum.PengguaTimeH }}</td>
+        <td>{{ airhum.PengguaTimeL }}</td>
+        <td>{{ airhum.ChengshuTimeH }}</td>
+        <td>{{ airhum.ChengshuTimeL }}</td>
+    </tr>
+    <tr>
+        <td>{{ soilmoi.DataKind }}</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+    </tr>
+    <tr>
+        <td>单位vol%</td>
+        <td>{{ soilmoi.HuanmiaoTimeH }}</td>
+        <td>{{ soilmoi.HuanmiaoTimeL }}</td>
+        <td>{{ soilmoi.ShenmanTimeH }}</td>
+        <td>{{ soilmoi.ShenmanTimeL }}</td>
+        <td>{{ soilmoi.ZuoguoTimeH }}</td>
+        <td>{{ soilmoi.ZuoguoTimeL }}</td>
+        <td>{{ soilmoi.PengguaTimeH }}</td>
+        <td>{{ soilmoi.PengguaTimeL }}</td>
+        <td>{{ soilmoi.ChengshuTimeH }}</td>
+        <td>{{ soilmoi.ChengshuTimeL }}</td>
+    </tr>
+    <tr>
+        <td>{{ soiltem.DataKind }}</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+    </tr>
+    <tr>
+        <td>单位℃</td>
+        <td>{{ soiltem.HuanmiaoTimeH }}</td>
+        <td>{{ soiltem.HuanmiaoTimeL }}</td>
+        <td>{{ soiltem.ShenmanTimeH }}</td>
+        <td>{{ soiltem.ShenmanTimeL }}</td>
+        <td>{{ soiltem.ZuoguoTimeH }}</td>
+        <td>{{ soiltem.ZuoguoTimeL }}</td>
+        <td>{{ soiltem.PengguaTimeH }}</td>
+        <td>{{ soiltem.PengguaTimeL }}</td>
+        <td>{{ soiltem.ChengshuTimeH }}</td>
+        <td>{{ soiltem.ChengshuTimeL }}</td>
+    </tr>
+</table>
+</body>
+</html>

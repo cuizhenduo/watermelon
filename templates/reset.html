@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+</head>
+<body>
+<form action="/rect/" method="post" enctype="multipart/form-data">
+<table border="1" >
+     <tr>
+        <td>西瓜季节</td>
+        <td colspan="2" align="center">缓苗期</td>
+        <td colspan="2" align="center">伸蔓期</td>
+        <td colspan="2" align="center">坐果期</td>
+        <td colspan="2" align="center">澎瓜期</td>
+        <td colspan="2" align="center">成熟期</td>
+    </tr>
+    <tr>
+        <td>
+            <select name="season">
+                <option value ="春季西瓜" {% if season == '春季西瓜' %}selected{% endif %}>春季西瓜</option>
+                <option value ="秋季西瓜" {% if season == '秋季西瓜' %}selected{% endif %}>秋季西瓜</option>
+            </select>
+        </td>
+        <td><input type="date" value="{{HuanmiaoTimeS}}" name="HuanmiaoTimeS"></td>
+        <td><input type="date" value="{{HuanmiaoTimeE}}" name="HuanmiaoTimeE"></td>
+        <td><input type="date" value="{{ShenmanTimeS}}" name="ShenmanTimeS"></td>
+        <td><input type="date" value="{{ShenmanTimeE}}" name="ShenmanTimeE"></td>
+        <td><input type="date" value="{{ZuoguoTimeS}}" name="ZuoguoTimeS"></td>
+        <td><input type="date" value="{{ZuoguoTimeE}}" name="ZuoguoTimeE"></td>
+        <td><input type="date" value="{{PengguaTimeS}}" name="PengguaTimeS"></td>
+        <td><input type="date" value="{{PengguaTimeE}}" name="PengguaTimeE"></td>
+        <td><input type="date" value="{{ChengshuTimeS}}" name="ChengshuTimeS"></td>
+        <td><input type="date" value="{{ChengshuTimeE}}" name="ChengshuTimeE"></td>
+    </tr>
+    <tr>
+        <td>光照强度</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+    </tr>
+    <tr>
+        <td>单位lux</td>
+        <td><input type="text" value="{{light.HuanmiaoTimeH}}" name="LHuanmiaoTimeH"></td>
+        <td><input type="text" value="{{light.HuanmiaoTimeL}}" name="LHuanmiaoTimeL"></td>
+        <td><input type="text" value="{{light.ShenmanTimeH}}" name="LShenmanTimeH"></td>
+        <td><input type="text" value="{{light.ShenmanTimeL}}" name="LShenmanTimeL"></td>
+        <td><input type="text" value="{{light.ZuoguoTimeH}}" name="LZuoguoTimeH"></td>
+        <td><input type="text" value="{{light.ZuoguoTimeL}}" name="LZuoguoTimeL"></td>
+        <td><input type="text" value="{{light.PengguaTimeH}}" name="LPengguaTimeH"></td>
+        <td><input type="text" value="{{light.PengguaTimeL}}" name="LPengguaTimeL"></td>
+        <td><input type="text" value="{{light.ChengshuTimeH}}" name="LChengshuTimeH"></td>
+        <td><input type="text" value="{{light.ChengshuTimeL}}" name="LChengshuTimeL"></td>
+    </tr>
+    <tr>
+        <td>空气温度</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+    </tr>
+    <tr>
+        <td>单位℃</td>
+        <td><input type="text" value="{{airtem.HuanmiaoTimeH}}" name="ATHuanmiaoTimeH"></td>
+        <td><input type="text" value="{{airtem.HuanmiaoTimeL}}" name="ATHuanmiaoTimeL"></td>
+        <td><input type="text" value="{{airtem.ShenmanTimeH}}" name="ATShenmanTimeH"></td>
+        <td><input type="text" value="{{airtem.ShenmanTimeL}}" name="ATShenmanTimeL"></td>
+        <td><input type="text" value="{{airtem.ZuoguoTimeH}}" name="ATZuoguoTimeH"></td>
+        <td><input type="text" value="{{airtem.ZuoguoTimeL}}" name="ATZuoguoTimeL"></td>
+        <td><input type="text" value="{{airtem.PengguaTimeH}}" name="ATPengguaTimeH"></td>
+        <td><input type="text" value="{{airtem.PengguaTimeL}}" name="ATPengguaTimeL"></td>
+        <td><input type="text" value="{{airtem.ChengshuTimeH}}" name="ATChengshuTimeH"></td>
+        <td><input type="text" value="{{airtem.ChengshuTimeL}}" name="ATChengshuTimeL"></td>
+    </tr>
+    <tr>
+        <td>空气湿度</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+    </tr>
+    <tr>
+        <td>单位%</td>
+        <td><input type="text" value="{{airhum.HuanmiaoTimeH}}" name="AHHuanmiaoTimeH"></td>
+        <td><input type="text" value="{{airhum.HuanmiaoTimeL}}" name="AHHuanmiaoTimeL"></td>
+        <td><input type="text" value="{{airhum.ShenmanTimeH}}" name="AHShenmanTimeH"></td>
+        <td><input type="text" value="{{airhum.ShenmanTimeL}}" name="AHShenmanTimeL"></td>
+        <td><input type="text" value="{{airhum.ZuoguoTimeH}}" name="AHZuoguoTimeH"></td>
+        <td><input type="text" value="{{airhum.ZuoguoTimeL}}" name="AHZuoguoTimeL"></td>
+        <td><input type="text" value="{{airhum.PengguaTimeH}}" name="AHPengguaTimeH"></td>
+        <td><input type="text" value="{{airhum.PengguaTimeL}}" name="AHPengguaTimeL"></td>
+        <td><input type="text" value="{{airhum.ChengshuTimeH}}" name="AHChengshuTimeH"></td>
+        <td><input type="text" value="{{airhum.ChengshuTimeL}}" name="AHChengshuTimeL"></td>
+    </tr>
+    <tr>
+        <td>土壤水分</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+    </tr>
+    <tr>
+        <td>单位vol%</td>
+        <td><input type="text" value="{{soilmoi.HuanmiaoTimeH}}" name="SMHuanmiaoTimeH"></td>
+        <td><input type="text" value="{{soilmoi.HuanmiaoTimeL}}" name="SMHuanmiaoTimeL"></td>
+        <td><input type="text" value="{{soilmoi.ShenmanTimeH}}" name="SMShenmanTimeH"></td>
+        <td><input type="text" value="{{soilmoi.ShenmanTimeL}}" name="SMShenmanTimeL"></td>
+        <td><input type="text" value="{{soilmoi.ZuoguoTimeH}}" name="SMZuoguoTimeH"></td>
+        <td><input type="text" value="{{soilmoi.ZuoguoTimeL}}" name="SMZuoguoTimeL"></td>
+        <td><input type="text" value="{{soilmoi.PengguaTimeH}}" name="SMPengguaTimeH"></td>
+        <td><input type="text" value="{{soilmoi.PengguaTimeL}}" name="SMPengguaTimeL"></td>
+        <td><input type="text" value="{{soilmoi.ChengshuTimeH}}" name="SMChengshuTimeH"></td>
+        <td><input type="text" value="{{soilmoi.ChengshuTimeL}}" name="SMChengshuTimeL"></td>
+    </tr>
+    <tr>
+        <td>土壤温度</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+        <td  align="center">最高值</td>
+        <td  align="center">最低值</td>
+    </tr>
+    <tr>
+        <td>单位℃</td>
+        <td><input type="text" value="{{soiltem.HuanmiaoTimeH}}" name="STHuanmiaoTimeH"></td>
+        <td><input type="text" value="{{soiltem.HuanmiaoTimeL}}" name="STHuanmiaoTimeL"></td>
+        <td><input type="text" value="{{soiltem.ShenmanTimeH}}" name="STShenmanTimeH"></td>
+        <td><input type="text" value="{{soiltem.ShenmanTimeL}}" name="STShenmanTimeL"></td>
+        <td><input type="text" value="{{soiltem.ZuoguoTimeH}}" name="STZuoguoTimeH"></td>
+        <td><input type="text" value="{{soiltem.ZuoguoTimeL}}" name="STZuoguoTimeL"></td>
+        <td><input type="text" value="{{soiltem.PengguaTimeH}}" name="STPengguaTimeH"></td>
+        <td><input type="text" value="{{soiltem.PengguaTimeL}}" name="STPengguaTimeL"></td>
+        <td><input type="text" value="{{soiltem.ChengshuTimeH}}" name="STChengshuTimeH"></td>
+        <td><input type="text" value="{{soiltem.ChengshuTimeL}}" name="STChengshuTimeL"></td>
+    </tr>
+</table>
+<input type="submit" value="提交修改" class="button button-pill button-primary">
+</form>
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js">
+</script>
+</body>
+</html>

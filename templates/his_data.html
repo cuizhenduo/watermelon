@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 引入 ECharts 文件 -->
+    {% load staticfiles %}
+    <script src="{% static 'js/echarts.min.js' %}"></script>
+    <title>Title</title>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 100%;height:400px;"></div>
+    <script type="text/javascript">
+        var slot_ids = JSON.parse('{{ lux|safe }}');
+        var dtime = JSON.parse('{{ dtime|safe }}');
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '历史数据'
+            },
+            tooltip: {},
+            legend: {
+                data:['光照']
+            },
+            xAxis: {
+                type: 'category',
+                data: dtime,
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                name: '光照',
+                data: slot_ids,
+                type: 'line',
+                smooth: true
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+<table border="1" cellspacing="0">
+    <tr>
+        <td>光照</td><td>空气温度</td><td>空气湿度</td><td>土壤水分</td><td>土壤温度</td><td>时间</td>
+    </tr>
+{% for each in list %}
+    <tr>
+    <td>{{ each.Light_intensity }}</td>
+    <td>{{ each.Air_temperature }}</td>
+    <td>{{ each.Air_humidity }}</td>
+    <td>{{ each.Soil_moisture }}</td>
+    <td>{{ each.Soil_temperature }}</td>
+    <td>{{ each.Time }}</td>
+    </tr>
+{% endfor %}
+</table>
+</body>
+</html>
